@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react"
 import { Alert, Button, Card, Form } from "react-bootstrap"
-import { useAuth } from "../context/AuthContext"
+import { useAuth } from "../contexts/AuthContext"
 
 const SignUp = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
-    const { signup } = useAuth()
+    const { signup,currentUser } = useAuth()
     const [error, setError] = useState("")
     const [loading,setLoading] = useState(false)
 
@@ -30,6 +30,7 @@ const SignUp = () => {
             <Card>
                 <Card.Body>
                     <h2 className="text-center mb-4">Sign Up</h2>
+                    {JSON.stringify(currentUser.email)}
                     {error&&<Alert variant="danger">{error}</Alert>}
                     <Form onSubmit={handleSubmit}> 
                         <Form.Group id="email">
